@@ -25,6 +25,11 @@ class Bank:
             if trans.title == title:
                 self.wallet.remove(trans)
                 return f"{title} has been removed!"
-        return f"{title} is not found..."    
+        return f"{title} is not found..."
     
+    #display all
+    def display(self):
+        if not self.wallet:
+            return f"No transactions available in your wallet"
+        return "\n".join([transaction.display_info() for transaction in self.wallet]) #calls display_info method
         
