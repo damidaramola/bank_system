@@ -32,4 +32,12 @@ class Bank:
         if not self.wallet:
             return f"No transactions available in your wallet"
         return "\n".join([transaction.display_info() for transaction in self.wallet]) #calls display_info method
+    
+    #search wallet method
+    
+    def search(self,query):
+        found = [trans for trans in self.wallet if query.lower() in trans.title.lower() or query.lower in trans.type.lower() ] #check if what youre looking for is in current list
+        if not found:
+            return f"No Transactions!"
+        return "\n".join([transaction.display_info() for transaction in found])
         
