@@ -1,3 +1,5 @@
+import json
+
 "class based banking system project"
 
 class Transaction:
@@ -39,5 +41,13 @@ class Bank:
         found = [trans for trans in self.wallet if query.lower() in trans.title.lower() or query.lower in trans.type.lower() ] #check if what youre looking for is in current list
         if not found:
             return f"No Transactions!"
-        return "\n".join([transaction.display_info() for transaction in found])
+       
+    
+    def save_file(self,filename="wallet.json"):
+        data = [{'Expense':transaction.title,'Amount':transaction.amount,'Type':transaction.type,'Note':transaction.note} for transaction in self.wallet]
+        with open(filename,"w") as file:
+            json.dump(data,file)
+            
+    
+            
         
